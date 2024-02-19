@@ -13,13 +13,14 @@ if [[ ! -e .venv ]]; then
   .conan/bin/virtualenv .venv
   source .venv/bin/activate
   pip install conan
+  conan profile detect -f
   deactivate
 fi
 source .venv/bin/activate
-conan install --requires cmake/3.28.1 -of . -pr:b centos7.profile -pr:h centos7.profile
+conan install --requires cmake/3.28.1 -of . -pr:b cpp11.profile -pr:h cpp11.profile
 source ./conanbuild.sh
 source ./conanrun.sh
-conan install -r conancenter . --build=missing -of . -pr:b centos7.profile -pr:h centos7.profile
+conan install -r conancenter . --build=missing -of . -pr:b cpp11.profile -pr:h cpp11.profile
 deactivate
 source ./conanbuild.sh
 source ./conanrun.sh
