@@ -1,3 +1,10 @@
+
+cmake_version: 
+	@source ./conanbuild.sh && cmake --version
+
+# Ensure targets are not treated as a files
+.PHONY: cmake_version
+
 AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 
