@@ -4,3 +4,7 @@ fmt/9.1.0
 [generators]
 AutotoolsToolchain
 PkgConfigDeps
+
+[tool_requires]
+cmake/3.28.1
+
