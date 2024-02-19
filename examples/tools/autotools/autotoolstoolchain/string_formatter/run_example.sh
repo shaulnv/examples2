@@ -17,9 +17,6 @@ if [[ ! -e .venv ]]; then
   deactivate
 fi
 source .venv/bin/activate
-conan install --requires cmake/3.28.1 -of . -pr:b cpp11.profile -pr:h cpp11.profile
-source ./conanbuild.sh
-source ./conanrun.sh
 conan install -r conancenter . --build=missing -of . -pr:b cpp11.profile -pr:h cpp11.profile
 deactivate
 source ./conanbuild.sh
