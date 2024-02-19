@@ -8,13 +8,19 @@ set -ex
 rm -rf conanbuild* conanrun* conanauto* deactivate* *.pc aclocal* auto* config.* Makefile.in depcomp install-sh missing Makefile configure string_formatter
 
 # Then generate conanbuild.sh
-if [[ ! -e .conan/bin/conan ]]; then
-  pip install conan --target .conan
-  .conan/bin/conan profile detect -f
-  .conan/bin/conan install --requires cmake/3.28.1 -of build
+if [[ ! -e .venv ]]; then
+  python3 -m pip install virtualenv
+  virtualenv .venv
+  source .venv/bin/activate
+  pip install conan
+  conan profile detect -f
+  conan install --requires cmake/3.28.1 -of build
+  deactivate
   source ./build/conanbuild.sh
 fi
-.conan/bin/conan install -r conancenter . --build=missing -of build
+source .venv/bin/activate
+conan install -r conancenter . --build=missing -of build
+deactivate
 source build/conanbuild.sh
 
 # Build the example
